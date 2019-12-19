@@ -1,7 +1,29 @@
 {
   "login.title": "Dang nhap vao MarioGram",
+  "login.register": "Dang ky",
+  "login.login" : "Dang nhap",
+  "login.username" : "Ten dang nhap",
+  "login.button": "Dang nhap",
   "description": {
     "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
     "part2": "Switch language between english and german using buttons above."
-  }
+  },
+  "home.search": "Tim trong Mariogram",
+  "home.question": "Co gi hot khong ban oi?",
+  "home.like": "thich",
+  "home.comment": "binh luan",
+  "home.addComment": "Them mot binh luan...",
+  "home.loadMore": "Tai them xi",
+  "home.suggested": "Goi y",
+  "home.follow": "Theo doi",
+  "home.unfollow": "Bo theo doi",
+  "home.chooseAnImage": "Chon mot anh hoac video",
+  "home.post": "Dang",
+  "home.cancel": "Bo thoi",
+  "home.notify": "Nhan thong bao",
+  "home.open": "Chi tiet",
+  "profile.posts": "Bai dang",
+  "profile.followers": "Theo doi",
+  "profile.followings": "Nguoi theo doi",
+  "profile.editProfile": "Thay doi"
 }
