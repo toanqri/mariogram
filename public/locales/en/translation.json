@@ -3,10 +3,7 @@
   "login.register": "Register",
   "login.login" : "Login",
   "login.username" : "Username",
-  "description": {
-    "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-    "part2": "Switch language between english and german using buttons above."
-  },
+  "login.password" : "Password",
   "home.search": "Search Mariogram",
   "home.question": "What's new with you? #cool\n",
   "home.like": "like",
@@ -24,5 +21,13 @@
   "profile.posts": "Posts",
   "profile.followers": "Followers",
   "profile.followings": "Followings",
-  "profile.editProfile": "Edit profile"
-}
+  "profile.editProfile": "Edit profile",
+  "register.title": "Get started now and let the fun begins",
+  "register.username": "Username",
+  "register.firstName":  "First name",
+  "register.lastName":  "Last name",
+  "register.email": "Email",
+  "register.phone": "Phone",
+  "register.password": "Password",
+  "register.confirmPassword": "Confirm Password"
+ }

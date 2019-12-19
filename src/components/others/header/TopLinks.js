@@ -71,12 +71,12 @@ function HeaderTopLinks({ isLoggedIn, currentUser }) {
         </Menu.Item>
         <Menu.Item>
           <NavLink to="/login">
-            <span className="links_span">Login</span>
+            <span className="links_span">{t('login.login')}</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item>
           <NavLink to="/register">
-            <span className="links_span">Register</span>
+            <span className="links_span">{t('login.register')}</span>
           </NavLink>
         </Menu.Item>
       </Menu>

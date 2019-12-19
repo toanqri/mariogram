@@ -63,7 +63,7 @@ function Login() {
             required
             spellCheck="false"
             autoComplete="false"
-            placeholder="Username"
+            placeholder={t('login.username')}
             onChange={(e) => setUsername(e.target.value)}
             disabled={loading}
           />
@@ -73,7 +73,7 @@ function Login() {
             type="password"
             value={password}
             required
-            placeholder="Password"
+            placeholder={t('login.password')}
             onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
           />

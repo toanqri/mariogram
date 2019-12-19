@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Message } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import api from '../../api/helpers';
 import { showSuccess } from '../../utils/helpers';
 
@@ -15,6 +16,8 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState([]);
+
+  const { t } = useTranslation();
 
   function _register() {
     if (password !== confirmPassword) {
@@ -50,7 +53,7 @@ function Register() {
     <div className="notes_wrapper" style={{ paddingTop: 500 }}>
       <div className="register cua " style={{ width: 450 }}>
         <div className="display_text">
-          <span>Get started now and let the fun begins</span>
+          <span>{t('register.title')}</span>
         </div>
         <Form className="form_register" error>
           <Form.Input
@@ -58,7 +61,7 @@ function Register() {
             iconPosition="left"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
+            placeholder={t('register.username')}
             required
             disabled={loading}
           />
@@ -74,7 +77,7 @@ function Register() {
               iconPosition="left"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              placeholder="First Name"
+              placeholder={t('register.firstName')}
               required
               disabled={loading}
             />
@@ -83,7 +86,7 @@ function Register() {
               iconPosition="left"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              placeholder="Last Name"
+              placeholder={t('register.lastName')}
               required
               disabled={loading}
             />
@@ -94,7 +97,7 @@ function Register() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            placeholder={t('register.email')}
             required
             disabled={loading}
           />
@@ -103,7 +106,7 @@ function Register() {
             iconPosition="left"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="Phone"
+            placeholder={t('register.phone')}
             disabled={loading}
           />
           <Form.Group widths="equal">
@@ -113,7 +116,7 @@ function Register() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder={t('register.password')}
               required
               disabled={loading}
             />
@@ -123,7 +126,7 @@ function Register() {
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm Password"
+              placeholder={t('register.confirmPassword')}
               required
               disabled={loading}
             />
@@ -134,7 +137,7 @@ function Register() {
               list={errors}
             />
           ) : null}
-          <Button fluid positive loading={loading} onClick={_register}>Register</Button>
+          <Button fluid positive loading={loading} onClick={_register}>{t('login.register')}</Button>
         </Form>
       </div>
 
