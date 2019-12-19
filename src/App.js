@@ -1,61 +1,66 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import { NotificationContainer } from 'react-notifications';
 import Header from './components/others/header/Header';
-import NotiSpeak from './components/others/noti-speak';
-import SideBar from './components/others/sidebar/sidebar';
 import Routes from './routes';
 import { TOKEN_KEY } from './config/Constants';
 import api from './api/helpers';
 import { AuthContext } from './context/auth';
+import { showError } from './utils/helpers';
 
 function App() {
   const savedToken = JSON.parse(localStorage.getItem(TOKEN_KEY));
 
   const [token, setToken] = useState(savedToken);
+  const [currentUser, setCurrentUser] = useState({});
+
+  function _fetchProfile() {
+    if (!token) return;
+    const username = token ? jwtDecode(token).name : '';
+    if (username) {
+      api.get(`/users/${username}`)
+        .then((response) => {
+          setCurrentUser(response);
+        })
+        .catch((error) => showError(error.message));
+    }
+  }
 
   const saveToken = (data) => {
-    localStorage.setItem(TOKEN_KEY, JSON.stringify(data));
-    setToken(data);
+    setToken(null);
+    setCurrentUser({});
+    if (data) {
+      localStorage.setItem(TOKEN_KEY, JSON.stringify(data));
+      setToken(data);
+      api.init({ token: savedToken });
+      _fetchProfile();
+    } else {
+      localStorage.removeItem(TOKEN_KEY);
+    }
   };
-
-  const currentUser = token ? jwtDecode(token).name : '';
 
   if (savedToken) {
     api.init({ token: savedToken });
   }
 
-  // const { unreadNotifications, unreadMessages } = this.props;
+  useEffect(() => {
+    _fetchProfile();
+  }, [token]);
 
   return (
-    <AuthContext.Provider value={{ token, setToken: saveToken, currentUser }}>
-      <Router>
-        <div className="app">
-          <NotificationContainer />
-          <Header isLoggedIn={token} currentUser={currentUser} />
-          {/* <NotiSpeak un={unreadNotifications} /> */}
-          {/* <SideBar un={unreadNotifications} uc={unreadMessages} /> */}
-          <Routes />
-        </div>
-      </Router>
-    </AuthContext.Provider>
+    <Suspense fallback>
+      <AuthContext.Provider value={{ token, setToken: saveToken, currentUser }}>
+        <Router>
+          <div className="app">
+            <NotificationContainer />
+            <Header isLoggedIn={token} currentUser={currentUser} />
+            <Routes />
+          </div>
+        </Router>
+      </AuthContext.Provider>
+    </Suspense>
   );
 }
 
 export default App;
-
-// const mapStateToProps = (store) => ({
-//   unreadNotifications: store.Notification.unreadNotifications,
-// });
-//
-// const mapDispatchToProps = (dispatch) => bindActionCreators(
-//   {
-//     setToken,
-//     getUnreadNotifications,
-//   },
-//   dispatch,
-// );
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export { App as PureApp };
