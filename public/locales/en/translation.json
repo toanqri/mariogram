@@ -1,7 +1,28 @@
 {
   "login.title": "Login to MarioGram",
+  "login.register": "Register",
+  "login.login" : "Login",
+  "login.username" : "Username",
   "description": {
     "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
     "part2": "Switch language between english and german using buttons above."
-  }
+  },
+  "home.search": "Search Mariogram",
+  "home.question": "What's new with you? #cool\n",
+  "home.like": "like",
+  "home.comment": "comment",
+  "home.addComment": "Add a comment...",
+  "home.loadMore": "Load more",
+  "home.suggested": "Suggested",
+  "home.follow": "Follow",
+  "home.unfollow": "Unfollow",
+  "home.chooseAnImage": "Choose an image or video",
+  "home.post": "Post",
+  "home.cancel": "Cancel",
+  "home.notify": "Get notification",
+  "home.open": "Open",
+  "profile.posts": "Posts",
+  "profile.followers": "Followers",
+  "profile.followings": "Followings",
+  "profile.editProfile": "Edit profile"
 }
