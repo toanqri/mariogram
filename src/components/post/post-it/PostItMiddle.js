@@ -22,7 +22,9 @@ function PostItMiddle({
     const file = e.target.files[0];
     onTargetFileChanged(file);
 
-    reader.onload = (ee) => onPreviewImgChanged(ee.target.result);
+    reader.onload = (ee) => {
+      onPreviewImgChanged(ee.target.result);
+    };
     reader.readAsDataURL(file);
   };
 
@@ -42,7 +44,13 @@ function PostItMiddle({
             />
           </div>
           <div className="i_p_img">
-            <Image src={previewImg} />
+            {fileInput.includes('.mp4') ? (
+              <video style={{ maxWidth: 468 }} controls>
+                <source src={previewImg} type="video/mp4" />
+              </video>
+            ) : (
+              <Image src={previewImg} />
+            )}
           </div>
         </div>
       ) : (

@@ -14,6 +14,7 @@ function App() {
 
   const [token, setToken] = useState(savedToken);
   const [currentUser, setCurrentUser] = useState({});
+  const [q, setQ] = useState('');
 
   function _fetchProfile() {
     if (!token) return;
@@ -50,11 +51,11 @@ function App() {
 
   return (
     <Suspense fallback>
-      <AuthContext.Provider value={{ token, setToken: saveToken, currentUser }}>
+      <AuthContext.Provider value={{ token, setToken: saveToken, currentUser, q }}>
         <Router>
           <div className="app">
             <NotificationContainer />
-            <Header isLoggedIn={token} currentUser={currentUser} />
+            <Header q={q} onChangedQ={setQ} isLoggedIn={token} currentUser={currentUser} />
             <Routes />
           </div>
         </Router>

@@ -8,6 +8,7 @@ import Feed from './Feed';
 import api from '../../api/helpers';
 import { showError } from '../../utils/helpers';
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '../../config/Constants';
+import { useAuth } from '../../context/auth';
 
 function Home() {
   const [loading, setLoading] = useState(false);
@@ -15,9 +16,11 @@ function Home() {
   const [page, setPage] = useState(DEFAULT_PAGE);
   const [totalPages, setTotalPages] = useState(1);
 
+  const { q } = useAuth();
+
   function _getFeed() {
     setLoading(true);
-    api.get(`/posts/home?page=${page}&size=${DEFAULT_SIZE}`)
+    api.get(`/posts${q ? `?q=${q}&` : '/home?'}page=${page}&size=${DEFAULT_SIZE}`)
       .then((response) => {
         if (page === 0) {
           setPosts(response.content);
@@ -32,7 +35,7 @@ function Home() {
 
   useEffect(() => {
     _getFeed();
-  }, [page]);
+  }, [page, q]);
 
   function _addNewPost(post) {
     setPosts([post, ...posts]);

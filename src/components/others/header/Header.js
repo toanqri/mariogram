@@ -5,7 +5,7 @@ import HeaderOptions from './HeaderOptions';
 import HeaderTopLinks from './TopLinks';
 import HeaderLogo from './Logo';
 
-function Header({ isLoggedIn, currentUser }) {
+function Header({ q, onChangedQ, isLoggedIn, currentUser }) {
   const [showOptions, setShowOptions] = useState(false);
 
   function toggleOptions() {
@@ -16,7 +16,7 @@ function Header({ isLoggedIn, currentUser }) {
     <div className="header">
       <HeaderLogo />
       {isLoggedIn && (
-        <Search />
+        <Search q={q} onChangedQ={onChangedQ} />
       )}
       <div className="header_right">
         <HeaderTopLinks isLoggedIn={isLoggedIn} currentUser={currentUser} />

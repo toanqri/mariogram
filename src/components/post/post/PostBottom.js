@@ -8,12 +8,14 @@ import AppLink from '../../others/link/Link';
 import { DEFAULT_AVATAR } from '../../../config/Constants';
 import api from '../../../api/helpers';
 import { showError } from '../../../utils/helpers';
+import { useAuth } from '../../../context/auth';
 
 function PostBottom({ postDetails }) {
   const [numberOfComments, setNumberOfComments] = useState(postDetails.numberOfComments || 0);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState('');
+  const { currentUser } = useAuth();
 
   function _getComments() {
     setLoading(true);
@@ -56,7 +58,7 @@ function PostBottom({ postDetails }) {
       />
       <Comment.Group>
         <Comment>
-          <Comment.Avatar src={DEFAULT_AVATAR} />
+          <Comment.Avatar src={currentUser.avatarUrl || DEFAULT_AVATAR} />
           <Comment.Content>
             <Input
               placeholder="Add a comment..."

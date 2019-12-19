@@ -6,11 +6,13 @@ import { cLoading } from '../../../utils/utils';
 import AppLink from '../link/Link';
 import api from '../../../api/helpers';
 import { showError } from '../../../utils/helpers';
+import { useTranslation } from 'react-i18next';
 
 function Suggested({ when }) {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [users, setUsers] = useState([]);
+  const { t } = useTranslation();
 
   function _getSuggestedUsers() {
     setLoading(true);
@@ -33,7 +35,7 @@ function Suggested({ when }) {
     <div>
       <div className="recomm">
         <div className="recomm_top">
-          <span>Suggested</span>
+          <span>{t('suggested.title')}</span>
           <a
             href="#"
             className="recomm_refresh"

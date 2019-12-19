@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import qs from 'querystring';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/auth';
@@ -15,7 +15,7 @@ function Login() {
   const { setToken } = useAuth();
   const [loading, setLoading] = useState(false);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   function _login() {
     if (username && password) {
@@ -55,7 +55,7 @@ function Login() {
         <div className="display_text">
           <span>{t('login.title')}</span>
         </div>
-        <Form className="form_login">
+        <Form className="form_login" onSubmit={_login}>
           <Form.Input
             icon="users"
             iconPosition="left"
@@ -78,9 +78,9 @@ function Login() {
             disabled={loading}
           />
           <Button
+            type="submit"
             fluid
             positive
-            onClick={_login}
             loading={loading}
           >
             Login

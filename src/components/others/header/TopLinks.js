@@ -10,21 +10,31 @@ function HeaderTopLinks({ isLoggedIn, currentUser }) {
 
   return isLoggedIn ? (
     <>
-      <div>
-        <Button>
-          <Flag name="ae" />
-        </Button>
-        <Button>
-          <Flag name="ae" />
-        </Button>
-      </div>
-      <NavLink
-        to="/admin/advertisements"
-        activeClassName="ha_active"
-        className="notification"
+      <Button
+        basic
+        onClick={() => {
+          i18n.changeLanguage('vi');
+          api.init({ acceptLanguage: 'vi' });
+        }}
       >
-        <span className="links_span">Ads</span>
-      </NavLink>
+        <Flag name="vn" />
+      </Button>
+      <Button
+        basic
+        onClick={() => {
+          i18n.changeLanguage('en');
+          api.init({ acceptLanguage: 'en' });
+        }}
+      >
+        <Flag name="us" />
+      </Button>
+      {/* <NavLink */}
+      {/*  to="/admin/advertisements" */}
+      {/*  activeClassName="ha_active" */}
+      {/*  className="notification" */}
+      {/* > */}
+      {/*  <span className="links_span">Ads</span> */}
+      {/* </NavLink> */}
       <NavLink
         to={`/profile/${currentUser.username}`}
         activeClassName="ha_active"

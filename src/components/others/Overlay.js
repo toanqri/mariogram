@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 const Overlay = ({
   type, close_on_click, close, opacity,
 }) => {
-  const cls = type == 'black'
+  const cls = type === 'black'
     ? 'overlay'
-    : type == 'white'
+    : type === 'white'
       ? 'hidden_overlay'
-      : type == 'colored'
+      : type === 'colored'
         ? 'colored_overlay'
         : null;
 
